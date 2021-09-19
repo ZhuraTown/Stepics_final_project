@@ -14,11 +14,11 @@ class LoginPage(BasePage):
     def go_to_login_page(self):
         login_link = self.browser.find_element(*LoginPageLocators.LOGIN_LINK)
         login_link.click()
+        
     
     #метод для проверки корректности ссылки на логин на сайте
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
-        print(self.browser.current_url)
         assert LoginPageLocators.LOGIN_IN_ASSERT in self.browser.current_url, " 'Login' is not found in URL"
 
     def should_be_login_form(self):

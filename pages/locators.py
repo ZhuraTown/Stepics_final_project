@@ -10,3 +10,11 @@ class LoginPageLocators():
     LOGIN_IN_ASSERT = ('login')
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+
+class ProductPageLocators():
+    PRODUCT_BASKET_BUTTON = (By.CSS_SELECTOR, "button[class='btn btn-lg btn-primary btn-add-to-basket']")
+    
+    PRODUCT_PRICE = (By.CSS_SELECTOR,'div.product_main p.price_color')
+    PRODUCT_NAME_BOOK = (By.CSS_SELECTOR, "div.product_main h1")
+    PRODUCT_BASKET_NAME = (By.CSS_SELECTOR, "#messages div:nth-child(1) strong")
+    PRODUCT_BASKET_PRICE =  (By.CSS_SELECTOR, "#messages div:nth-child(3) strong")##messages div:nth-child(3) strong

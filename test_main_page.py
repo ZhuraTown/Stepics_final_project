@@ -14,6 +14,7 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 import pytest
+from time import sleep
 
 from .pages.login_page import LoginPage
  

@@ -29,13 +29,21 @@ class PruductPage(BasePage):
     def should_name_in_basket_correct(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_BOOK).text
         product_name_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_BASKET_NAME).text
-        print(product_name)
-        print(product_name_basket)
         assert product_name == product_name_basket, "Added book to cart and chosen one are different"
     
     def should_price_in_basket_correct(self):
         price_page = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         price_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_BASKET_PRICE).text
         assert price_page == price_basket, "The cost of the selected books and baskets is different"
-        
     
+    #проверка, если нет сообщения, то падаем
+    #def should_not_be_success_message(self):
+    #    assert not self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented"
+    
+    #проверка, если есть сообщение то падаем
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
+        
+    #success_message_is_disappeared
+    def should_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"

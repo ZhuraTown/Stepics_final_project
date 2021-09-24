@@ -3,7 +3,7 @@ from selenium import webdriver
 
 
 def pytest_addoption(parser):
-    parser.addoption('--language',action='store',default='en',help='Choose language.Example en, ru, fr...')
+    parser.addoption('--language',action='store',default='en-gb',help='Choose language.Example en, ru, fr...')
 
 
 @pytest.fixture(scope='function')

@@ -4,6 +4,7 @@
 
 from .pages.product_page import PruductPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 
 import pytest
 from time import sleep
@@ -64,3 +65,17 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.open()
     page.go_to_login_page()
     page.should_be_login_page()
+
+@pytest.mark.basket
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser,request):
+    link = f"http://selenium1py.pythonanywhere.com/{request.config.getoption('language')}/catalogue/the-city-and-the-stars_95/"
+    page = BasketPage(browser,link)
+    page.open()
+    page.go_to_basket_page()
+    page.should_basket_is_empty_negative()
+    page.should_basket_is_empty(request.config.getoption('language'))
+    #Гость открывает страницу товара
+    #Переходит в корзину по кнопке в шапке 
+    #Ожидаем, что в корзине нет товаров
+    #Ожидаем, что есть текст о том что корзина пуста
+    

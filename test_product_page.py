@@ -9,14 +9,19 @@ import pytest
 import time
 
 LINK_PROMO = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-LINK_PAGE = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
+LINK_PAGE = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 
 class TestUserAddToBasketFromProductPage():
     
     @pytest.fixture(scope='function', autouse=True) 
     def setup(self,browser,request):
-        link = f"http://selenium1py.pythonanywhere.com/{request.config.getoption('language')}"
+        if request.config.getoption('language') == 'en':
+            language_page = 'en-gb'
+        else:
+            language_page = request.config.getoption('language')
+        #link = f"http://selenium1py.pythonanywhere.com/{request.config.getoption('language')}"
+        link = f"http://selenium1py.pythonanywhere.com/{language_page}"
         email,password = str(time.time()) + "@fakemail.org" ,'000000hsj'
         page = LoginPage(browser,link)
         page.open()
@@ -92,14 +97,20 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.go_to_login_page()
     page.should_be_login_page()
 
-@pytest.mark.need_review
+@pytest.mark.need_review1
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser,request):
-    link = f"http://selenium1py.pythonanywhere.com/{request.config.getoption('language')}/catalogue/the-city-and-the-stars_95/"
+    if request.config.getoption('language') == 'en':
+        language_page = 'en-gb'
+        print(f"Выбран язык {language_page}")
+    else:
+        language_page = request.config.getoption('language')
+        print(f"Выбран язык {language_page}")
+    link = f"http://selenium1py.pythonanywhere.com/{language_page}/catalogue/the-city-and-the-stars_95/"
     page = BasketPage(browser,link)
     page.open()
     page.go_to_basket_page()
     page.should_basket_is_empty_negative()
-    page.should_basket_is_empty(request.config.getoption('language'))
+    page.should_basket_is_empty(language_page)
 
     
     

@@ -14,7 +14,17 @@ class LoginPage(BasePage):
     def go_to_login_page(self):
         login_link = self.browser.find_element(*LoginPageLocators.LOGIN_LINK)
         login_link.click()
-        
+    
+    def find_and_paste_text(self,find_el,text):
+        self.browser.find_element(*find_el).send_keys(text)
+    
+    def register_new_user(self,email,password):
+        self.go_to_login_page()
+        self.find_and_paste_text(LoginPageLocators.REGISTER_EMAIL,email)
+        self.find_and_paste_text(LoginPageLocators.REGISTER_PASSWORD, password)
+        self.find_and_paste_text(LoginPageLocators.REGISTER_CONFIRM_PASSWORD, password)
+        self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON).click()
+        sleep(3)
     
     #метод для проверки корректности ссылки на логин на сайте
     def should_be_login_url(self):

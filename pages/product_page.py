@@ -1,5 +1,3 @@
-#Здесь будет класс ProductPage с методами для открытия страницы, выбора товара и проверки
-#нажатия кнопки "добавить в корзину", решения появившейся задачи
 
 from .base_page import BasePage
 from .locators import ProductPageLocators
